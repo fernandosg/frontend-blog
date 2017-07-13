@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import Category from './components/category';
+import ListCategory from './components/list_category';
 import Post from './components/post';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux';
@@ -15,6 +16,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <Route path="/category" component={ListCategory}/> //This is for test, the ListCategory maybe should be in the header or in the sidebar
         <Route path="/category/:id" component={Category}/>
         <Route path="/post/:id" component={Post}/>
       </Route>
