@@ -10,8 +10,8 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
 import {Router, Route, browserHistory} from 'react-router';
-
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import promiseMiddleware from 'redux-promise-middleware';
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware())(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
