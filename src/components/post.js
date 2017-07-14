@@ -12,7 +12,7 @@ class Post extends Component{
 
   componentWillMount(){
     if(this.props.preview==undefined)
-      this.props.getPostById(this.props.id);
+      this.props.getPostById(this.props.post_id);
   }
 
   handleContentOfPost(){
@@ -29,7 +29,7 @@ class Post extends Component{
 
   getLayoutPost(){
     if(this.props.preview==true){
-      let path="/post/"+this.props.id;
+      let path="/post/"+this.props.post_id;
       return <article>
         <h1>
           <Link to={path}>{this.props.title}</Link>
