@@ -7,7 +7,6 @@ class Category extends Component{
   constructor(){
     super();
     this.getPosts=this.getPosts.bind(this);
-    this.defineTitleCategory=this.defineTitleCategory.bind(this);
   }
   componentWillMount(){
     this.props.getAllPostByCategory(this.props.params.id);
@@ -17,7 +16,7 @@ class Category extends Component{
     if(this.props.posts.length>0){
       return this.props.posts.map((post)=>{
         return(
-          <Post title={post.title}
+          <Post id={post.id} title={post.title}
             message={post.message}
             resume_message={post.resume_message}
             published_at={post.published_at}
@@ -27,9 +26,8 @@ class Category extends Component{
     }
   }
 
-  defineTitleCategory(){
-    if(this.props.posts.length>0)
-      document.getElementById("title_category").innerHTML=this.props.posts[0].category_name
+  componentDidUpdate(){
+    document.getElementById("title_category").innerHTML=this.props.posts[0].category_name;
   }
 
   render(){
@@ -37,7 +35,6 @@ class Category extends Component{
       <div>
         <h1 id="title_category"></h1>
         {this.getPosts()}
-        {this.defineTitleCategory()}
       </div>
     )
   }
