@@ -1,5 +1,5 @@
 import{
-  GET_BY_CATEGORY
+  GET_BY_CATEGORY, GET_BY_ID
 } from './types';
 
 import {
@@ -34,6 +34,29 @@ export function getAllPostByCategory(category){
   });
   return{
     type: GET_BY_CATEGORY,
+    payload: request
+  }
+}
+
+export function getPostById(post_id){
+  const request=client.getEntries({
+    access_token:ACCESS_TOKEN,
+    content_type:"post",
+    "fields.contentType.sys.Id":post_id
+  }).then((response)=>{
+    return{
+      id:response.items[0].sys.id,
+      title:response.items[0].fields.title,
+      message:response.items[0].fields.message,
+      resume_message:response.items[0].fields.resumeMessage,
+      published_at:response.items[0].fields.publishedAt,
+      category_name:response.items[0].fields.category.fields.name
+    }
+  }).catch((error)=>{
+    console.log("Hubo un error buscando post por categoria")
+  });
+  return{
+    type: GET_BY_ID,
     payload: request
   }
 }
