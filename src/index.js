@@ -17,7 +17,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="/category" component={ListCategory}/> //This is for test, the ListCategory maybe should be in the header or in the sidebar
-        <Route path="/category/:id" component={Category}/>
+        <Route path="/category/:category_name" component={Category}/>
         <Route path="/post/:id" component={Post}/>
       </Route>
     </Router>
