@@ -24,7 +24,8 @@ export function getAllPostByCategory(category){
         id:post.sys.id,
         title:post.fields.title,
         message:post.fields.message,
-        resume_message:post.fields.resume_message,
+        resume_message:post.fields.resumeMessage,
+        published_at:post.fields.publishedAt,
         category_name:post.fields.category.fields.name
       }
     })
