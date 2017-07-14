@@ -4,9 +4,9 @@ class Post extends Component{
   render(){
     return(
       <article>
-        <h1>Titulo del post</h1>
-        <p>Mensaje</p>
-        <b>13/07/2017</b>
+        <h1>{this.props.title}</h1>
+        <p>{this.props.message}</p>
+        <b>{this.props.publishedAt}</b>
       </article>
     )
   }
