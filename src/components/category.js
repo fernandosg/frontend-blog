@@ -1,13 +1,48 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Post from './post';
+import * as actions from "../actions/post";
 
 class Category extends Component{
+  constructor(){
+    super();
+    this.getPosts=this.getPosts.bind(this);
+    this.defineTitleCategory=this.defineTitleCategory.bind(this);
+  }
+  componentWillMount(){
+    this.props.getAllPostByCategory(this.props.params.id);
+  }
+
+  getPosts(){
+    if(this.props.posts.length>0){
+      return this.props.posts.map((post)=>{
+        return(
+          <Post {...post} key={post.id} />
+        )
+      })
+    }
+  }
+
+  defineTitleCategory(){
+    if(this.props.posts.length>0)
+      document.getElementById("title_category").innerHTML=this.props.posts[0].category_name
+  }
+
   render(){
     return(
       <div>
-        <h1>Testing category</h1>
+        <h1 id="title_category"></h1>
+        {this.getPosts()}
+        {this.defineTitleCategory()}
       </div>
     )
   }
 }
 
-export default Category;
+function mapStateToProps(state){
+  return{
+    posts:state.postReducer
+  }
+}
+
+export default connect(mapStateToProps,actions)(Category);
