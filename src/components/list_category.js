@@ -15,7 +15,7 @@ class ListCategory extends Component{
 
   getListCategories(){
     return this.props.categories.map((category)=>{
-      const path="/category/"+category.id;
+      const path="/category/"+category.name;
       return(
         <li key={category.id}>
           <Link to={path}>{category.name}</Link>
@@ -26,12 +26,9 @@ class ListCategory extends Component{
 
   render(){
     return(
-      <div>
-        <h1>Lista de categorias</h1>
-        <ul>
-          {this.getListCategories()}
-        </ul>
-      </div>
+      <ul>
+        {this.getListCategories()}
+      </ul>
     )
   }
 }
