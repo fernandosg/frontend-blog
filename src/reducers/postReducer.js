@@ -5,7 +5,12 @@ import{
 export default function(state={},action){
   switch(action.type){
     case `${GET_BY_CATEGORY}_FULFILLED`:
-      return [...state,...action.payload];
+      if(action.payload.length>0)
+        return [...state,...action.payload];
+      else
+        return [];
+    case `${GET_BY_CATEGORY}_REJECTED`:
+      return [];
     case `${GET_BY_ID}_FULFILLED`:
       return [action.payload];
     default:
