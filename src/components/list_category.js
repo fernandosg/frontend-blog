@@ -28,6 +28,9 @@ class ListCategory extends Component{
     return(
       <ul>
         {this.getListCategories()}
+        <li>
+          <Link to="/about">Acerca de</Link>
+        </li>
       </ul>
     )
   }
