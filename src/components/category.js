@@ -9,14 +9,19 @@ class Category extends Component{
     this.getPosts=this.getPosts.bind(this);
   }
   componentWillMount(){
-    this.props.getAllPostByCategory(this.props.params.id);
+    this.props.getAllPostByCategory(this.props.params.category_name);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.params.category_name!=nextProps.params.category_name)
+      this.props.getAllPostByCategory(nextProps.params.category_name);
   }
 
   getPosts(){
     if(this.props.posts.length>0){
       return this.props.posts.map((post)=>{
         return(
-          <Post id={post.id} title={post.title}
+          <Post post_id={post.id} title={post.title}
             message={post.message}
             resume_message={post.resume_message}
             published_at={post.published_at}
@@ -26,14 +31,11 @@ class Category extends Component{
     }
   }
 
-  componentDidUpdate(){
-    document.getElementById("title_category").innerHTML=this.props.posts[0].category_name;
-  }
 
   render(){
     return(
-      <div>
-        <h1 id="title_category"></h1>
+      <div id={this.props.params.category_name} key={this.props.params.category_name}>
+        <h1 id="title_category">{this.props.params.category_name}</h1>
         {this.getPosts()}
       </div>
     )
