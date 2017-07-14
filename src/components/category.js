@@ -17,7 +17,11 @@ class Category extends Component{
     if(this.props.posts.length>0){
       return this.props.posts.map((post)=>{
         return(
-          <Post {...post} key={post.id} />
+          <Post title={post.title}
+            message={post.message}
+            resume_message={post.resume_message}
+            published_at={post.published_at}
+            preview={true} key={post.id} />
         )
       })
     }
