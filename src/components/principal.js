@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import * as actions from '../actions/post';
+import * as principalActions from '../actions/principal';
+import * as postsActions from '../actions/post';
 import Post from './post';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 class Principal extends Component{
 
   constructor(){
     super();
     this.displayLatestPost=this.displayLatestPost.bind(this);
+    this.displayLatestPrincipalPost=this.displayLatestPrincipalPost.bind(this);
   }
 
   componentWillMount(){
-    this.props.getLatestPost(5);
+    this.props.actions.postsActions.getLatestPost(5);
+    this.props.actions.principalActions.getLatestPrincipalPost();
   }
 
   displayLatestPost(){
@@ -32,19 +36,24 @@ class Principal extends Component{
     }
   }
 
+  displayLatestPrincipalPost(){
+    return (<article className="principal-container col-md-12">
+      <div className="row">
+        <figure className="img-principal-article col-md-5">
+          <img src="img/imagen.jpg"/>
+        </figure>
+        <div className="col-md-7">
+          <h2>{this.props.principal.title}</h2>
+          {this.props.principal.resume_message}
+        </div>
+      </div>
+    </article>);
+  }
+
   render(){
     return(
     <section className="row">
-      <article className="principal-container col-md-12">
-        <div className="row">
-          <figure className="img-principal-article col-md-5">
-            <img src="img/imagen.jpg"/>
-          </figure>
-          <div className="col-md-7">
-            <h2>Esta seria siendo una nota principal</h2>
-          </div>
-        </div>
-      </article>
+      {this.displayLatestPrincipalPost()}
       <section className="row">
         <aside className="about-me col-md-4">
           <h3>Acerca de mi</h3>
@@ -63,8 +72,18 @@ class Principal extends Component{
 
 function mapStateToProps(state){
   return{
-    posts:state.postReducer
+    posts:state.postReducer,
+    principal:state.principalReducer
   }
 }
 
-export default connect(mapStateToProps,actions)(Principal);
+function mapDispatchToProps(dispatch){
+  return{
+    actions:{
+      principalActions: bindActionCreators(principalActions,dispatch),
+      postsActions: bindActionCreators(postsActions,dispatch)
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Principal);
