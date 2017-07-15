@@ -79,7 +79,7 @@ export function getPostById(post_id){
   const request=client.getEntries({
     access_token:ACCESS_TOKEN,
     content_type:"post",
-    "fields.contentType.sys.Id":post_id
+    "sys.id":post_id
   }).then((response)=>{
     return{
       id:response.items[0].sys.id,
