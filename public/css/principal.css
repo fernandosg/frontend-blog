@@ -70,6 +70,10 @@ img.profile_picture{
   text-align: center;
 }
 
+.container-about p{
+  text-align: justify;
+}
+
 .copyright-info{
   text-align: right;
 }
