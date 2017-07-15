@@ -1,5 +1,5 @@
 import{
-  GET_BY_CATEGORY, GET_BY_ID
+  GET_BY_CATEGORY, GET_BY_ID, GET_LATEST_POST
 } from '../actions/post/types';
 
 export default function(state={},action){
@@ -13,6 +13,8 @@ export default function(state={},action){
       return [];
     case `${GET_BY_ID}_FULFILLED`:
       return [action.payload];
+    case `${GET_LATEST_POST}_FULFILLED`:
+      return action.payload;
     default:
       return state;
   }
