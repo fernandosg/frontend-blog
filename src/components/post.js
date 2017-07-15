@@ -11,8 +11,8 @@ class Post extends Component{
   }
 
   componentWillMount(){
-    if(this.props.preview==undefined){
-      if(this.props.params.id==undefined)
+    if(this.props.preview===undefined){
+      if(this.props.params.id===undefined)
         this.props.getPostById(this.props.post_id);
       else
         this.props.getPostById(this.props.params.id);
@@ -20,7 +20,7 @@ class Post extends Component{
   }
 
   handleContentOfPost(){
-    if(this.props.preview==undefined){
+    if(this.props.preview===undefined){
       return(
         <p>{this.props.message}</p>
       )
@@ -32,11 +32,11 @@ class Post extends Component{
   }
 
   getLayoutPost(){
-    if(this.props.preview==true){
+    if(this.props.preview===true){
       let path="/post/"+this.props.post_id;
       return <article className="col-md-12">
         <figure className="img-principal-article col-md-12">
-          <img src={this.props.image}/>
+          <img alt="" src={this.props.image}/>
         </figure>
         <h1>
           <Link to={path}>{this.props.title}</Link>
@@ -47,14 +47,14 @@ class Post extends Component{
     }else if(this.props.posts.length>0){
       return <article className="col-md-12">
         <figure className="img-principal-article col-md-12">
-          <img src={this.props.posts[0].image}/>
+          <img alt="" src={this.props.posts[0].image}/>
         </figure>
         <h1>{this.props.posts[0].title}</h1>
         <span className="post-publish-date">{this.props.posts[0].published_at}</span>
         {this.props.posts[0].message}
       </article>
     }else{
-      <article className="col-md-12"></article>
+      return <article className="col-md-12"></article>;
     }
   }
 

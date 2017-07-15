@@ -22,10 +22,11 @@ export function getAllPostByCategory(category_name){
     "fields.category.fields.name[match]":category_name,
     "select":"fields.title,fields.message,fields.resumeMessage,fields.publishedAt,fields.image,fields.category"
   }).then((response)=>{
-    if(response.includes!=undefined)
-      var image="http://"+response.includes.Asset[0].fields.file.url;
+    var image;
+    if(response.includes!==undefined)
+      image="http://"+response.includes.Asset[0].fields.file.url;
     else
-      var image="";
+      image="";
     return response.items.map((post)=>{
       return{
         id:post.sys.id,

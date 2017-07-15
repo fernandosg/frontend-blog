@@ -13,7 +13,7 @@ class Category extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.params.category_name!=nextProps.params.category_name)
+    if(this.props.params.category_name!==nextProps.params.category_name)
       this.props.getAllPostByCategory(nextProps.params.category_name);
   }
 

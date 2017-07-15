@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import ListCategory from './list_category';
 class Header extends Component{
   render(){

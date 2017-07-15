@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import * as principalActions from '../actions/principal';
 import * as postsActions from '../actions/post';
-import Post from './post';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 class Principal extends Component{
@@ -19,12 +18,12 @@ class Principal extends Component{
   }
 
   displayLatestPost(){
-    if(this.props.posts.length!=undefined){
+    if(this.props.posts.length!==undefined){
       return this.props.posts.map((post)=>{
         let path="/post/"+post.id
         return (<article key={post.id} className="post-container row">
           <figure className="img-principal-article col-md-12">
-            <img src={post.image}/>
+            <img alt="" src={post.image}/>
           </figure>
           <div className="col-md-12">
             <h2>{post.title}</h2>
@@ -40,7 +39,7 @@ class Principal extends Component{
     return (<article className="principal-container col-md-12">
       <div className="row">
         <figure className="img-principal-article col-md-5">
-          <img src={this.props.principal.image}/>
+          <img alt="" src={this.props.principal.image}/>
         </figure>
         <div className="col-md-7">
           <h2>{this.props.principal.title}</h2>
@@ -57,7 +56,7 @@ class Principal extends Component{
       <section className="row">
         <aside className="about-me col-md-4">
           <h3>Acerca de mi</h3>
-          <img className="profile_picture" src="img/profile_picture.jpg"/>
+          <img alt="" className="profile_picture" src="img/profile_picture.jpg"/>
           <p>Mi nombre es Fernando Segura, programador freelance para web (principalmente backend) y móvil en plataformas android</p>
           <Link to="/about">Leer mas</Link>
         </aside>

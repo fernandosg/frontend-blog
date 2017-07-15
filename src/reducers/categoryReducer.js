@@ -1,5 +1,5 @@
 import{
-  GET_BY_ID,GET_ALL
+  GET_ALL
 } from '../actions/category/types';
 
 export default function(state=[],action){
