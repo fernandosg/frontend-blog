@@ -80,15 +80,18 @@ export function getPostById(post_id){
   const request=client.getEntries({
     access_token:ACCESS_TOKEN,
     content_type:"post",
-    "sys.id":post_id
+    "sys.id":post_id,
+    "select":"fields.title,fields.message,fields.resumeMessage,fields.publishedAt,fields.image,fields.category"
   }).then((response)=>{
+    let image="http://"+response.includes.Asset[0].fields.file.url;
     return{
       id:response.items[0].sys.id,
       title:response.items[0].fields.title,
       message:response.items[0].fields.message,
       resume_message:response.items[0].fields.resumeMessage,
       published_at:response.items[0].fields.publishedAt,
-      category_name:response.items[0].fields.category.fields.name
+      category_name:response.items[0].fields.category.fields.name,
+      image:image
     }
   }).catch((error)=>{
     console.log("Hubo un error buscando post por categoria")
