@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/post';
 import { Link } from 'react-router';
+import DisqusComponent from './disqus_component';
 class Post extends Component{
 
   constructor(){
@@ -58,10 +59,25 @@ class Post extends Component{
     }
   }
 
+  showDisqusComment(){
+    if(this.props.preview===undefined && this.props.posts[0]!==undefined){
+      let path="http://fernandosg.github.io/post/"+this.props.posts[0].id
+      return(
+        <DisqusComponent
+				shortname="fernandosegom"
+				identifier={this.props.posts[0].id}
+				title={this.props.posts[0].title}
+				url={path}
+				category_id="123456"/>
+      )
+    }
+  }
+
   render(){
     return(
       <div className="col-md-10 center container-single-post">
         {this.getLayoutPost()}
+        {this.showDisqusComment()}
       </div>
     )
   }
