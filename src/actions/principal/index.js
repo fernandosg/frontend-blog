@@ -17,8 +17,13 @@ export function getLatestPrincipalPost(){
   const request=client.getEntries({
     content_type:"post",
     "fields.category.sys.contentType.sys.id":"category",
-    "fields.category.fields.name[match]":"Principal"
+    "fields.category.fields.name[match]":"Principal",
+    "select":"fields.title,fields.message,fields.resumeMessage,fields.publishedAt,fields.image,fields.category"
   }).then((response)=>{
+    if(response.includes!=undefined)
+      var image="http://"+response.includes.Asset[0].fields.file.url;
+    else
+      var image="";
     return response.items.map((post)=>{
         return {
           id: post.sys.id,
@@ -26,7 +31,8 @@ export function getLatestPrincipalPost(){
           message:post.fields.message,
           resume_message:post.fields.resumeMessage,
           published_at:post.fields.publishedAt,
-          category_name:post.fields.category.fields.name
+          category_name:post.fields.category.fields.name,
+          image:image
         }
     })[0];
   }).catch((error)=>{

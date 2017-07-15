@@ -17,9 +17,15 @@ export function getAllPostByCategory(category_name){
   const request=client.getEntries({
     access_token:ACCESS_TOKEN,
     content_type:"post",
+    include:2,
     "fields.category.sys.contentType.sys.id":"category",
-    "fields.category.fields.name[match]":category_name
+    "fields.category.fields.name[match]":category_name,
+    "select":"fields.title,fields.message,fields.resumeMessage,fields.publishedAt,fields.image,fields.category"
   }).then((response)=>{
+    if(response.includes!=undefined)
+      var image="http://"+response.includes.Asset[0].fields.file.url;
+    else
+      var image="";
     return response.items.map((post)=>{
       return{
         id:post.sys.id,
@@ -27,11 +33,13 @@ export function getAllPostByCategory(category_name){
         message:post.fields.message,
         resume_message:post.fields.resumeMessage,
         published_at:post.fields.publishedAt,
-        category_name:post.fields.category.fields.name
+        category_name:post.fields.category.fields.name,
+        image:image
       }
     })
   }).catch((error)=>{
-    console.log("Hubo un error buscando post por categoria")
+    console.log("Hubo un error buscando post por categoria");
+    console.dir(error);
   });
   return{
     type: GET_BY_CATEGORY,
@@ -41,8 +49,10 @@ export function getAllPostByCategory(category_name){
 
 export function getLatestPost(count_post){
   const request=client.getEntries({
-    content_type:"post"
+    content_type:"post",
+    "select":"fields.title,fields.message,fields.resumeMessage,fields.publishedAt,fields.image,fields.category"
   }).then((response)=>{
+    let image="http://"+response.includes.Asset[0].fields.file.url;
     return response.items.map((post)=>{
         return {
           id: post.sys.id,
@@ -50,7 +60,8 @@ export function getLatestPost(count_post){
           message:post.fields.message,
           resume_message:post.fields.resumeMessage,
           published_at:post.fields.publishedAt,
-          category_name:post.fields.category.fields.name
+          category_name:post.fields.category.fields.name,
+          image:image
         }
     })
   }).catch((error)=>{
