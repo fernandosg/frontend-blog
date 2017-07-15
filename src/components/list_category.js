@@ -28,6 +28,9 @@ class ListCategory extends Component{
     return(
       <nav className="menu-header">
         <ul>
+          <li>
+            <Link to="/">Inicio</Link>
+          </li>
           {this.getListCategories()}
           <li>
             <Link to="/about">Acerca de</Link>
