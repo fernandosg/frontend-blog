@@ -1,5 +1,5 @@
 import{
-  GET_BY_CATEGORY, GET_BY_ID
+  GET_BY_CATEGORY, GET_BY_ID, GET_LATEST_POST
 } from './types';
 
 import {
@@ -36,6 +36,32 @@ export function getAllPostByCategory(category_name){
   return{
     type: GET_BY_CATEGORY,
     payload: request
+  }
+}
+
+export function getLatestPost(count_post){
+  const request=client.getEntries({
+    content_type:"post"
+  }).then((response)=>{
+    console.log("Ultimos posts");
+    console.dir(response.items);
+    return response.items.map((post)=>{
+        return {
+          id: post.sys.id,
+          title: post.fields.title,
+          message:post.fields.message,
+          resume_message:post.fields.resumeMessage,
+          published_at:post.fields.publishedAt,
+          category_name:post.fields.category.fields.name
+        }
+    })
+  }).catch((error)=>{
+    console.log("Hubo un error");
+  });
+
+  return{
+    type:GET_LATEST_POST,
+    payload:request
   }
 }
 
