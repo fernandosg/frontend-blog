@@ -11,8 +11,12 @@ class Post extends Component{
   }
 
   componentWillMount(){
-    if(this.props.preview==undefined)
-      this.props.getPostById(this.props.post_id);
+    if(this.props.preview==undefined){
+      if(this.props.params.id==undefined)
+        this.props.getPostById(this.props.post_id);
+      else
+        this.props.getPostById(this.props.params.id);
+    }
   }
 
   handleContentOfPost(){
