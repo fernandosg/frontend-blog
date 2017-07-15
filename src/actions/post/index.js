@@ -43,8 +43,6 @@ export function getLatestPost(count_post){
   const request=client.getEntries({
     content_type:"post"
   }).then((response)=>{
-    console.log("Ultimos posts");
-    console.dir(response.items);
     return response.items.map((post)=>{
         return {
           id: post.sys.id,
@@ -64,6 +62,7 @@ export function getLatestPost(count_post){
     payload:request
   }
 }
+
 
 export function getPostById(post_id){
   const request=client.getEntries({
