@@ -26,12 +26,14 @@ class ListCategory extends Component{
 
   render(){
     return(
-      <ul>
-        {this.getListCategories()}
-        <li>
-          <Link to="/about">Acerca de</Link>
-        </li>
-      </ul>
+      <nav className="menu-header">
+        <ul>
+          {this.getListCategories()}
+          <li>
+            <Link to="/about">Acerca de</Link>
+          </li>
+        </ul>
+      </nav>
     )
   }
 }
