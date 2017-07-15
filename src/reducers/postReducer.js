@@ -6,7 +6,7 @@ export default function(state={},action){
   switch(action.type){
     case `${GET_BY_CATEGORY}_FULFILLED`:
       if(action.payload.length>0)
-        return [...state,...action.payload];
+        return action.payload;
       else
         return [];
     case `${GET_BY_CATEGORY}_REJECTED`:
