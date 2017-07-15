@@ -24,7 +24,7 @@ class Principal extends Component{
         let path="/post/"+post.id
         return (<article key={post.id} className="post-container row">
           <figure className="img-principal-article col-md-12">
-            <img src="img/imagen.jpg"/>
+            <img src={post.image}/>
           </figure>
           <div className="col-md-12">
             <h2>{post.title}</h2>
@@ -40,7 +40,7 @@ class Principal extends Component{
     return (<article className="principal-container col-md-12">
       <div className="row">
         <figure className="img-principal-article col-md-5">
-          <img src="img/imagen.jpg"/>
+          <img src={this.props.principal.image}/>
         </figure>
         <div className="col-md-7">
           <h2>{this.props.principal.title}</h2>

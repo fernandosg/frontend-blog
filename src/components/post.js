@@ -31,6 +31,9 @@ class Post extends Component{
     if(this.props.preview==true){
       let path="/post/"+this.props.post_id;
       return <article className="col-md-12">
+        <figure className="img-principal-article col-md-12">
+          <img src={this.props.image}/>
+        </figure>
         <h1>
           <Link to={path}>{this.props.title}</Link>
         </h1>
@@ -39,6 +42,9 @@ class Post extends Component{
       </article>
     }else if(this.props.posts.length>0){
       return <article className="col-md-12">
+        <figure className="img-principal-article col-md-12">
+          <img src={this.props.posts[0].image}/>
+        </figure>
         <h1>{this.props.posts[0].title}</h1>
         <span className="post-publish-date">{this.props.posts[0].published_at}</span>
         {this.props.posts[0].message}
@@ -51,10 +57,7 @@ class Post extends Component{
   render(){
     return(
       <div className="col-md-10 center container-single-post">
-        <figure className="img-principal-article col-md-12">
-          <img src="img/imagen.jpg"/>
-        </figure>
-          {this.getLayoutPost()}
+        {this.getLayoutPost()}
       </div>
     )
   }
