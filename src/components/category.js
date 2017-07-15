@@ -23,6 +23,7 @@ class Category extends Component{
         return(
           <Post post_id={post.id} title={post.title}
             message={post.message}
+            image={post.image}
             resume_message={post.resume_message}
             published_at={post.published_at}
             preview={true} key={post.id} />
