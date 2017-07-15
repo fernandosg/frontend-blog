@@ -1,6 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import * as actions from '../actions/post';
+import Post from './post';
+import { connect } from 'react-redux';
 class Principal extends Component{
+
+  constructor(){
+    super();
+    this.displayLatestPost=this.displayLatestPost.bind(this);
+  }
+
+  componentWillMount(){
+    this.props.getLatestPost(5);
+  }
+
+  displayLatestPost(){
+    if(this.props.posts.length!=undefined){
+      return this.props.posts.map((post)=>{
+        let path="/post/"+post.id
+        return (<article key={post.id} className="post-container row">
+          <figure className="img-principal-article col-md-12">
+            <img src="img/imagen.jpg"/>
+          </figure>
+          <div className="col-md-12">
+            <h2>{post.title}</h2>
+            <p>{post.message}</p>
+            <Link to={path}>Leer mas</Link>
+          </div>
+        </article>)
+      })
+    }
+  }
+
   render(){
     return(
     <section className="row">
@@ -22,16 +53,7 @@ class Principal extends Component{
           <Link to="/about">Leer mas</Link>
         </aside>
         <div className="col-md-8">
-          <article className="post-container row">
-            <figure className="img-principal-article col-md-12">
-              <img src="img/imagen.jpg"/>
-            </figure>
-            <div className="col-md-12">
-              <h2>Esta seria siendo una nota secundaria</h2>
-              <p>Donec nec quam vel elit ultrices gravida ac non lacus. Fusce ut convallis neque, sit amet laoreet est. Pellentessi que maximus, tortor eget aliquam semper, orci ante dignissim mauris.</p>
-              <a href="/post/">Leer mas</a>
-            </div>
-          </article>
+          {this.displayLatestPost()}
         </div>
       </section>
     </section>
@@ -39,4 +61,10 @@ class Principal extends Component{
   }
 }
 
-export default Principal;
+function mapStateToProps(state){
+  return{
+    posts:state.postReducer
+  }
+}
+
+export default connect(mapStateToProps,actions)(Principal);
