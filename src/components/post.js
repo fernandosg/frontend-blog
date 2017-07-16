@@ -61,7 +61,6 @@ class Post extends Component{
 
   showDisqusComment(){
     if(this.props.preview===undefined && this.props.posts[0]!==undefined){
-      console.log("Mostrar disqus "+this.props.posts[0].id);
       let path="http://fernandosg.github.io/post/"+this.props.posts[0].id
       return(
         <ReactDisqusThread
@@ -70,8 +69,6 @@ class Post extends Component{
 				title={this.props.posts[0].title}
 				url={path}/>
       )
-    }else {
-      console.log("No mostrar disqus");
     }
   }
 
