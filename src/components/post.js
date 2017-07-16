@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/post';
 import { Link } from 'react-router';
-import DisqusComponent from './disqus_component';
+import ReactDisqusThread from 'react-disqus-thread';
 class Post extends Component{
 
   constructor(){
@@ -61,14 +61,17 @@ class Post extends Component{
 
   showDisqusComment(){
     if(this.props.preview===undefined && this.props.posts[0]!==undefined){
+      console.log("Mostrar disqus "+this.props.posts[0].id);
       let path="http://fernandosg.github.io/post/"+this.props.posts[0].id
       return(
-        <DisqusComponent
+        <ReactDisqusThread
 				shortname="fernandosegom"
 				identifier={this.props.posts[0].id}
 				title={this.props.posts[0].title}
 				url={path}/>
       )
+    }else {
+      console.log("No mostrar disqus");
     }
   }
 
