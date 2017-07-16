@@ -45,7 +45,9 @@ class Principal extends Component{
         <div className="col-md-7">
           <h2>{this.props.principal.title}</h2>
           {this.props.principal.resume_message}
-          <Link to={path}>Leer mas</Link>
+          <p>
+            <Link to={path}>Leer mas</Link>
+          </p>
         </div>
       </div>
     </article>);
