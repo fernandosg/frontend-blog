@@ -25,7 +25,7 @@ class Principal extends Component{
           <figure className="img-principal-article col-md-12">
             <img alt="" src={post.image}/>
           </figure>
-          <div className="col-md-12">
+          <div className="col-md-12 content-linebreak">
             <h2>{post.title}</h2>
             <p>{post.resume_message}</p>
             <Link to={path}>Leer mas</Link>
