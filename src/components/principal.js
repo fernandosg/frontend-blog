@@ -27,7 +27,7 @@ class Principal extends Component{
           </figure>
           <div className="col-md-12">
             <h2>{post.title}</h2>
-            <p>{post.message}</p>
+            <p>{post.resume_message}</p>
             <Link to={path}>Leer mas</Link>
           </div>
         </article>)
