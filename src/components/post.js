@@ -43,7 +43,7 @@ class Post extends Component{
           <Link to={path}>{this.props.title}</Link>
         </h1>
         <span className="post-publish-date">{this.props.published_at}</span>
-        {this.props.resume_message}
+        <div className="content-linebreak" dangerouslySetInnerHTML={{__html: this.props.resume_message}}></div>
       </article>
     }else if(this.props.posts.length>0){
       return <article className="col-md-12">
@@ -52,7 +52,7 @@ class Post extends Component{
         </figure>
         <h1>{this.props.posts[0].title}</h1>
         <span className="post-publish-date">{this.props.posts[0].published_at}</span>
-        {this.props.posts[0].message}
+        <div className="content-linebreak" dangerouslySetInnerHTML={{__html: this.props.posts[0].message}}></div>
       </article>
     }else{
       return <article className="col-md-12"></article>;
