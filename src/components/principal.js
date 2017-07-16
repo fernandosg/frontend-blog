@@ -36,6 +36,7 @@ class Principal extends Component{
   }
 
   displayLatestPrincipalPost(){
+    let path="/post/"+this.props.principal.id;
     return (<article className="principal-container col-md-12">
       <div className="row">
         <figure className="img-principal-article col-md-5">
@@ -44,6 +45,7 @@ class Principal extends Component{
         <div className="col-md-7">
           <h2>{this.props.principal.title}</h2>
           {this.props.principal.resume_message}
+          <Link to={path}>Leer mas</Link>
         </div>
       </div>
     </article>);
