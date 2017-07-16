@@ -67,8 +67,7 @@ class Post extends Component{
 				shortname="fernandosegom"
 				identifier={this.props.posts[0].id}
 				title={this.props.posts[0].title}
-				url={path}
-				category_id="123456"/>
+				url={path}/>
       )
     }
   }
